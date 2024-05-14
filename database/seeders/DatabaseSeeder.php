@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -20,19 +19,24 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Fachri Admin',
             'email' => 'fachri@gmail.com',
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('12345678'),
         ]);
 
         // data dummy for company
         \App\Models\Company::create([
             'name' => 'PT. FIC16',
-            'email' => 'fic16@codewithbahri.com',
-            'address' => 'Jl. Raya Kedung Turi No. 20, Sleman, DIY',
+            'email' => 'fic16@company.com',
+            'address' => 'Jl. Jatiraya Semarang',
             'latitude' => '-7.747033',
             'longitude' => '110.355398',
             'radius_km' => '0.5',
             'time_in' => '08:00',
             'time_out' => '17:00',
+        ]);
+
+        $this->call([
+            AttendanceSeeder::class,
+            PermissionSeeder::class
         ]);
     }
 }
